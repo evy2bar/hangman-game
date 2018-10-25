@@ -2,7 +2,9 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js">
+     <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,20 +24,29 @@
         </header>
         <div class="container">
             <div id="guesses">
-                Guesses: <span id="misses-counts">0</span>/6
+                Guesses: <span id="misses-count">0</span>/6
             </div>
             <div id="current-word">
-                _ _ _ _ _
+               
             </div>
-            <div id="keyboard">
-                <div class="letter">A</div>
+            <div class="keyboard-container">
+                <!-- Elements should not be showing unless losted game -->
+                <div class="game-over-shade">
+                    <p>GAME OVER</p>
+                </div>
+                <!-- End elements -->
+            </div>
+            <!-- Elements should not be showing unless losted game -->
+            <div class="reset-btn-container">
+                <button id="reset-btn">Start Over</button>
             </div>
         </div>
         <script src="" async defer></script>
         <footer>
             <div id="disclaimer">
-                Developed by: Evelyn Barrios
+                Powered by: Evelyn Barrios
             </div>
         </footer>
     </body>
+    <script src="scripts.js"></script>
 </html>
