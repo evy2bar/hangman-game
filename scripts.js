@@ -1,12 +1,13 @@
-/**
- *  Create the alphabet 
- */
+
 var alphabet = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var buttonContainer = document.querySelector('.keyboard-container');
 var missesCount = document.getElementById('misses-count');
 var currentCount = 0;
 var resetButton = document.getElementById("reset-btn");
+var currentWordContainer = document.getElementById('current-word');
 var currentWord = '';
+var letter;
+ghostLinesLetters = [];
 var dictionary = ["computer", "java", "activity", "alaska",
 "appearance", "javatar", "automobile", "falafel", "birthday",
 "canada", "central", "character", "chicken", "chosen", "cutting",
@@ -19,7 +20,9 @@ var dictionary = ["computer", "java", "activity", "alaska",
 "quarter", "recognise", "replace", "rhythm", "situation",
 "slightly", "steady", "stepped", "strike", "successful", "sudden",
 "terrible", "traffic", "unusual", "volume", "yesterday"];
-
+/**
+ *  Create the alphabet 
+ */
 for (var i = 0; i < alphabet.length; i++) {
     var button = document.createElement("button");
     button.onclick = handlerOnClickLetter;
@@ -27,6 +30,39 @@ for (var i = 0; i < alphabet.length; i++) {
     button.classList.add('letter', 'btn-enabled');
     buttonContainer.appendChild(button);
 }
+/**
+ * Generates a random word
+ * @returns {string} a random word from the dictionary
+ */
+function getNewWord() {
+    var randomPos = getRandomArbitrary(0, dictionary.length);
+    return dictionary[randomPos];
+}
+/**
+ * Generates an arbitrar number between two numbers (Util function)
+ * @returns {number} a random number
+ */
+function getRandomArbitrary(min, max) {
+    var randomFloat = Math.random() * (max - min) + min;
+    return Math.floor(randomFloat); 
+}
+/**
+ * Generates a random word that shows hidden 
+ */
+function createGhostWord(){
+    var word = getNewWord(); 
+    currentWord = word;
+    console.log(word);
+    resetWord(currentWordContainer);
+    for (var i = 0; i < word.length; i++) {
+        letter = document.createElement("p");
+        letter.innerHTML = '_';
+        letter.classList.add("hidden-letter");
+        currentWordContainer.appendChild(letter);
+        ghostLinesLetters.push(letter);
+    } 
+}
+createGhostWord();
 /**
  *  Handling on click events on letter buttons
  */
@@ -38,6 +74,9 @@ function handlerOnClickLetter(ev) {
         if (currentWord.includes(clickedLetter)) {
             //Show the correct selected letter
             target.classList.replace('btn-enabled', 'btn-disabled-correct');
+            //Fill the blanc with the selected letter
+            // letter.innerHTML = clickedLetter;
+            // letter.classList.remove("hidden-letter");
         }
         else {
             target.classList.replace('btn-enabled', 'btn-disabled-incorrect');
@@ -53,60 +92,6 @@ function handlerOnClickLetter(ev) {
     }  
 }
 
-// // API calls
-// // Create a request variable and assign a new XMLHttpRequest object to it.
-// var request = new XMLHttpRequest();
-
-// // Open a new connection, using the GET request on the URL endpoint
-// request.open('GET', 'https://od-api.oxforddictionaries.com/api/v1/entries/en/ace/regions=us', true);
-
-// request.onload = function () {
-//   // Begin accessing JSON data here
-//   var data = JSON.parse(this.response);
-//   console.log(data);
-// }
-// request.setRequestHeader("Access-Control-Allow-Origin", );
-// request.setRequestHeader('app_key', '66dc38201b35fa80802b3bb6cf506c60');
-// request.setRequestHeader('app_id', 'f5624583');
-                
-// // Send request
-// request.send();
-
-
-
-
-/**
- * Generates a random word
- * @returns {string} a random word from the dictionary
- */
-function getNewWord() {
-    var randomPos = getRandomArbitrary(0, dictionary.length);
-    return dictionary[randomPos];
-}
-
-/**
- * Generates an arbitrar number between two numbers (Util function)
- * @returns {number} a random number
- */
-function getRandomArbitrary(min, max) {
-    var randomFloat = Math.random() * (max - min) + min;
-    return Math.floor(randomFloat);
-}
-
-function createGhostWord(){
-    var word = getNewWord();
-    currentWord = word;
-    console.log(word);
-    var currentWordContainer = document.getElementById('current-word');
-    resetWord(currentWordContainer);
-    for (var i = 0; i < word.length; i++) {
-        var letter = document.createElement("p");
-        letter.innerHTML = '_';
-        letter.classList.add("hidden-letter");
-        currentWordContainer.appendChild(letter);
-    } 
-}
-createGhostWord();
 
 /**
  * Reset the word

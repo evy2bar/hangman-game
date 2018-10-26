@@ -11,6 +11,7 @@
         <title>Simple Hangman</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="images/hangman_favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
@@ -30,16 +31,27 @@
                
             </div>
             <div class="keyboard-container">
-                <!-- Elements should not be showing unless losted game -->
+                <!-- Element should not be showing unless winned game -->
+                <!-- <div class="kudos-shade">
+                        <p>KUDOS!! YOU WON!!</p>
+                    </div> -->
+                    <!-- End element -->
+                <!-- Element should not be showing unless losted game -->
                 <div class="game-over-shade">
                     <p>GAME OVER</p>
                 </div>
-                <!-- End elements -->
+                <!-- End element -->
             </div>
-            <!-- Elements should not be showing unless losted game -->
+            <!-- Button should not be showing unless winned game -->
+            <!-- <div class="reset-btn-container">
+                    <button id="reset-btn">New Game</button>
+                </div> -->
+                <!-- End button -->
+            <!-- Button should not be showing unless losted game -->
             <div class="reset-btn-container">
                 <button id="reset-btn">Start Over</button>
             </div>
+            <!-- End button -->
         </div>
         <script src="" async defer></script>
         <footer>
