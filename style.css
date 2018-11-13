@@ -78,17 +78,20 @@ header #webapp-name h1 {
     background-color: red;
     cursor: no-drop;
   }
-  .game-over-shade {
+  .game-over-shade, .kudos-shade {
       position: absolute;
       background-color: rgba(204, 204, 204, 0.9);
       height: 100%;
       width: 100%;
       display: none;
   }
-  .game-over-shade p {
+  .game-over-shade p, .kudos-shade p {
       font-size: 40px;
       color:red;
       font-weight: 700;
+  }
+  .kudos-shade {
+      display: none;
   }
 .reset-btn-container {
     text-align: center;
